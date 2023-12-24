@@ -39,9 +39,10 @@ const SignUpForm = () => {
       );
 
       if (response) {
-        await createUserDocumentFromAuth(response.user, {
+        const user = await createUserDocumentFromAuth(response.user, {
           displayName: displayName,
         });
+        console.log("NEW User:", user, response);
       }
       alert("User created !");
     } catch (err) {
