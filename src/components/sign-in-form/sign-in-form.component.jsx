@@ -33,7 +33,7 @@ function SignInForm(props) {
 
   const logGoogleUser = async () => {
     const response = await signInWithGooglePopup();
-    console.log(response);
+    // console.log(response);
     const docRef = await createUserDocumentFromAuth(response?.user);
   };
 
@@ -48,7 +48,7 @@ function SignInForm(props) {
       if (res) {
         alert("User logged in");
       }
-      console.log(res);
+      // console.log(res);
       resetForm(defaultFormField);
     } catch (err) {
       console.log("Error signing in: ", err);
