@@ -1,7 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment, useContext } from "react";
 import { ReactComponent as CrownLogo } from "../../assets/svg/crown.svg";
-import "./navigation.style.scss";
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinksContainer,
+  NavLink,
+} from "./navigation.style";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
@@ -21,27 +26,23 @@ function Navigation() {
 
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <CrownLogo className="logo" />
-        </Link>
-        <div className="nav-links-container">
+        </LogoContainer>
+        <NavLinksContainer>
           <Link className="nav-link" to="/shop">
             Shop
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
-              Sign Out
-            </span>
+            <NavLink onClick={signOutHandler}>Sign Out</NavLink>
           ) : (
-            <Link className="nav-link" to="/auth">
-              Sign In
-            </Link>
+            <NavLink to="/auth">Sign In</NavLink>
           )}
           <CartIcon />
-        </div>
+        </NavLinksContainer>
         {isCartDropdownOpen && <CartDropdown />}
-      </div>
+      </NavigationContainer>
       {/* Outlet will render whatever is nested inside this component in the routes */}
       <Outlet />
     </Fragment>

@@ -1,18 +1,23 @@
 import { useContext } from "react";
 import { cartDropdownContext } from "../../contexts/cart-dropdown.context";
-import "./checkout-item.styles.scss";
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  Quantity,
+  RemoveButton,
+} from "./checkout-item.styles.jsx";
 
 const CheckoutItem = ({ cartItem }) => {
   const { name, price, imageUrl, quantity } = cartItem;
   const { removeFromCart, addItemToCart, decreaseCartItemCount } =
     useContext(cartDropdownContext);
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt={name} />
-      </div>
+      </ImageContainer>
       <span className="name">{name}</span>
-      <span className="quantity">
+      <Quantity>
         <div className="arrow" onClick={() => decreaseCartItemCount(cartItem)}>
           &#10094;
         </div>
@@ -20,12 +25,12 @@ const CheckoutItem = ({ cartItem }) => {
         <div className="arrow" onClick={() => addItemToCart(cartItem)}>
           &#10095;
         </div>
-      </span>
+      </Quantity>
       <span className="price">{price}</span>
-      <div className="remove-button" onClick={() => removeFromCart(cartItem)}>
+      <RemoveButton onClick={() => removeFromCart(cartItem)}>
         &#10005;
-      </div>
-    </div>
+      </RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 
